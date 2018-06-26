@@ -24,12 +24,18 @@ public class MomentsServiceImpl implements MomentsService {
     }
 
     @Override
-    public int deleteMoments(Moments moments) {
+    public int removeMoments(Moments moments) {
         return momentsMapper.delete(moments);
     }
 
     @Override
-    public int updateMoments(Moments moments) {
+    public int modifyMoments(Moments moments) {
         return momentsMapper.updateByPrimaryKey(moments);
+    }
+
+    @Override
+    public List<Moments> listMomentsByUserId(Integer uId) {
+        System.out.println(momentsMapper.selectMomentByUser(uId));
+        return momentsMapper.selectMomentByUser(uId);
     }
 }

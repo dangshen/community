@@ -9,19 +9,26 @@ public interface UserService {
      * 用户列表
      * @return
      */
-    public List<User> getAllUser();
+    List<User> getAllUser();
 
     /**
      * 注册
      * @param user
      * @return
      */
-    public int signUp(User user);
+    int signUp(User user);
 
     /**
      * 登录
      * @param user
      * @return
      */
-    public User login(User user);
+    User login(User user);
+
+    /**
+     * 根据id查询用户
+     * @param uId
+     * @return
+     */
+    //User findUserById(Integer uId);
 }

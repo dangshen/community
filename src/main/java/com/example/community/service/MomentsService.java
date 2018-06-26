@@ -10,26 +10,33 @@ public interface MomentsService {
      * 朋友圈列表
      * @return
      */
-    public List<Moments> getAllMoments();
+    List<Moments> getAllMoments();
 
     /**
      * 发布朋友圈
      * @param moments
      * @return
      */
-    public int addMoments(Moments moments);
+    int addMoments(Moments moments);
 
     /**
      * 删除朋友圈
      * @param moments
      * @return
      */
-    public int deleteMoments(Moments moments);
+    int removeMoments(Moments moments);
 
     /**
      * 修改朋友圈
      * @param moments
      * @return
      */
-    public int updateMoments(Moments moments);
+    int modifyMoments(Moments moments);
+
+    /**
+     * 根据用户查询朋友圈
+     * @param uId
+     * @return
+     */
+     List<Moments> listMomentsByUserId(Integer uId);
 }
