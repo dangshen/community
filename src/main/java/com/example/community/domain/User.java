@@ -17,6 +17,7 @@ public class User implements Serializable {
     private String uPassword;
 
     private List<Moments> moments;
+    private List<Favorite> favorites;
 
     public List<Moments> getMoments() {
         return moments;
@@ -24,6 +25,14 @@ public class User implements Serializable {
 
     public void setMoments(List<Moments> moments) {
         this.moments = moments;
+    }
+
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
     public Integer getuId() {

@@ -1,8 +1,11 @@
 package com.example.community.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.List;
 
 @Table(name = "moments")
 public class Moments implements Serializable {
@@ -11,10 +14,12 @@ public class Moments implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer mId;
 
-    private Date mTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Timestamp mTime;
     private String mText;
 
     private User user;
+    private List<Favorite> favorites;
 
     public User getUser() {
         return user;
@@ -22,6 +27,14 @@ public class Moments implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
     public Integer getmId() {
@@ -32,11 +45,11 @@ public class Moments implements Serializable {
         this.mId = mId;
     }
 
-    public Date getmTime() {
+    public Timestamp getmTime() {
         return mTime;
     }
 
-    public void setmTime(Date mTime) {
+    public void setmTime(Timestamp mTime) {
         this.mTime = mTime;
     }
 
@@ -54,6 +67,7 @@ public class Moments implements Serializable {
                 "mId=" + mId +
                 ", mTime=" + mTime +
                 ", mText='" + mText + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

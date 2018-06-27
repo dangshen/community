@@ -1,6 +1,7 @@
 package com.example.community.service;
 
 
+import com.example.community.domain.Favorite;
 import com.example.community.domain.Moments;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface MomentsService {
      * @param moments
      * @return
      */
-    int addMoments(Moments moments);
+    int publishMoments(Moments moments);
 
     /**
      * 删除朋友圈
@@ -27,11 +28,20 @@ public interface MomentsService {
     int removeMoments(Moments moments);
 
     /**
-     * 修改朋友圈
-     * @param moments
+     * 点赞朋友圈
+     * @param u_id
+     * @param m_id
      * @return
      */
-    int modifyMoments(Moments moments);
+    int likeMoments(Integer u_id, Integer m_id);
+
+    /**
+     * 取消点赞
+     * @param u_id
+     * @param m_id
+     * @return
+     */
+    int unLikeMoments(Integer u_id, Integer m_id);
 
     /**
      * 根据用户查询朋友圈

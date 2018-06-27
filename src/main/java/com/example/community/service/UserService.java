@@ -30,5 +30,5 @@ public interface UserService {
      * @param uId
      * @return
      */
-    //User findUserById(Integer uId);
+    User findUserById(Integer uId);
 }

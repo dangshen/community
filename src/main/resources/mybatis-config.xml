@@ -17,5 +17,6 @@
     <mappers>
         <mapper class="com.example.community.dao.mapper.UserMapper" />
         <mapper class="com.example.community.dao.mapper.MomentsMapper"/>
+        <mapper class="com.example.community.dao.mapper.FavoriteMapper"/>
     </mappers>
 </configuration>

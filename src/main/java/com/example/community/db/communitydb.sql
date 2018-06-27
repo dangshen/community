@@ -19,10 +19,13 @@ CREATE TABLE `moments` (
 
 /*点赞*/
 CREATE TABLE `favorite` (
+  `f_id` int(5) NOT NULL AUTO_INCREMENT,
   `u_id` int(5) NOT NULL,
   `m_id` int(5) NOT NULL,
+  PRIMARY KEY (`f_id`),
   KEY `f_u_id` (`u_id`),
   KEY `f_m_id` (`m_id`),
   CONSTRAINT `f_m_id` FOREIGN KEY (`m_id`) REFERENCES `moments` (`m_id`),
   CONSTRAINT `f_u_id` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
