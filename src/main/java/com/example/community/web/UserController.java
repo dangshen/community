@@ -35,15 +35,12 @@ public class UserController {
                 session.setAttribute("user", user);
                 returnMap.put("result", "注册成功");
                 returnMap.put("user", user);
-//                return "index";
             } else {
                 returnMap.put("result", "注册失败");
-//                return "/user/error";
             }
         } catch (Exception e) {
             e.printStackTrace();
             returnMap.put("result", "注册失败");
-//            return "/user/error";
         }
         return returnMap;
     }
@@ -62,10 +59,8 @@ public class UserController {
             session.setAttribute("user", returnUser);
             returnMap.put("result", "登录成功");
             returnMap.put("user", returnUser);
-//            return "index";
         } else {
             returnMap.put("result", "登录失败");
-//            return "/user/error";
         }
         return returnMap;
     }

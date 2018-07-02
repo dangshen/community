@@ -1,6 +1,9 @@
 package com.example.community.web;
 
+import com.example.community.domain.Favorite;
 import com.example.community.domain.Moments;
+import com.example.community.domain.User;
+import com.example.community.service.FavoriteService;
 import com.example.community.service.MomentsService;
 import com.example.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ public class MomentsController {
     private MomentsService momentsService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private FavoriteService favoriteService;
 
     //发布朋友圈
     @RequestMapping("/publishMoments")
@@ -24,10 +29,8 @@ public class MomentsController {
     public Map<String, Object> publishMoments(@ModelAttribute Moments moments, @RequestParam Integer uId) {
         System.out.println("uid: " + uId);
         Map<String, Object> returnMap = new HashMap<>();
-
         moments.setmTime(new Timestamp(System.currentTimeMillis()));
         moments.setUser(userService.findUserById(uId));
-
         try {
             int result = momentsService.publishMoments(moments);
             if (result == 1) {
@@ -44,13 +47,21 @@ public class MomentsController {
     }
 
     //删除朋友圈
+    //bug:判断moments与user是否对应
     @RequestMapping("/deleteMoments")
     @ResponseBody
     public Map<String, Object> deleteMoments(@ModelAttribute Moments moments) {
         Map<String, Object> returnMap = new HashMap<>();
         try {
-            int result = momentsService.removeMoments(moments);
-            if (result == 1) {
+            //删除点赞关系
+            //没有点赞关系返回0; 成功删除返回1
+            int resultDeleteFavrorite = favoriteService.removeAllFatoriteByMoments(moments.getmId());
+            System.out.println("resultDeleteFavrorite：" + resultDeleteFavrorite);
+            //删除朋友圈
+            int resultDeleteMoments = momentsService.removeMoments(moments);
+            System.out.println("resultDeleteMoments：" + resultDeleteMoments);
+
+            if (resultDeleteMoments == 1 && (resultDeleteFavrorite == 1 || resultDeleteFavrorite == 0)) {
                 returnMap.put("result", "删除成功");
             } else {
                 returnMap.put("result", "删除失败");
@@ -97,7 +108,6 @@ public class MomentsController {
         return returnMap;
     }
 
-    //bug：没有显示点赞列表
     @RequestMapping("/showMoments")
     @ResponseBody
     public Map<String, Object> showMoments() {

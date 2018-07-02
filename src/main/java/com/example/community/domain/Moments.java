@@ -68,6 +68,7 @@ public class Moments implements Serializable {
                 ", mTime=" + mTime +
                 ", mText='" + mText + '\'' +
                 ", user=" + user +
+                ", favorites=" + favorites +
                 '}';
     }
 }

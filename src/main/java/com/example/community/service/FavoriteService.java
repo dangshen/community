@@ -1,6 +1,9 @@
 package com.example.community.service;
 
 
+import com.example.community.domain.Favorite;
+
+import java.util.List;
 
 public interface FavoriteService {
 
@@ -19,4 +22,7 @@ public interface FavoriteService {
      * @return
      */
     int cancleFavoriteMoment(Integer u_id, Integer m_id);
+
+    int removeAllFatoriteByMoments(Integer m_id);
+
 }

@@ -13,8 +13,8 @@ public class Favorite implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer fId;
 
-    private List<User> users;
-    private List<Moments> moments;
+    private User user;
+    private Moments moments;
 
     public Integer getfId() {
         return fId;
@@ -24,19 +24,19 @@ public class Favorite implements Serializable {
         this.fId = fId;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<Moments> getMoments() {
+    public Moments getMoments() {
         return moments;
     }
 
-    public void setMoments(List<Moments> moments) {
+    public void setMoments(Moments moments) {
         this.moments = moments;
     }
 
@@ -44,7 +44,7 @@ public class Favorite implements Serializable {
     public String toString() {
         return "Favorite{" +
                 "fId=" + fId +
-                ", users=" + users +
+                ", user=" + user +
                 ", moments=" + moments +
                 '}';
     }

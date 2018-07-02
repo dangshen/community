@@ -49,4 +49,11 @@ public interface MomentsService {
      * @return
      */
      List<Moments> listMomentsByUserId(Integer uId);
+
+    /**
+     * 根据m_id查找朋友圈
+     * @param mId
+     * @return
+     */
+     Moments findMomentsById(Integer mId);
 }

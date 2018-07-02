@@ -17,16 +17,25 @@ public interface MomentsMapper extends Mapper<Moments> {
                     column = "u_id",
                     one = @One(select = "com.example.community.dao.mapper.UserMapper.selectUserById"))
     })
-    List<Moments> selectMomentByUser(@Param("uId")Integer uId);
+    List<Moments> selectMomentByUser(@Param("uId") Integer uId);
 
     @Select("select * from moments")
     @Results({
+            @Result(id = true, property = "mId", column = "m_id"),
             @Result(property = "user",
                     column = "u_id",
-                    one = @One(select = "com.example.community.dao.mapper.UserMapper.selectUserById"))
+                    one = @One(select = "com.example.community.dao.mapper.UserMapper.selectUserById")
+                    ),
+            @Result(property = "favorites",
+                    column = "m_id",
+                    many = @Many(select = "com.example.community.dao.mapper.FavoriteMapper.selectByMoments")
+                    )
     })
     List<Moments> selectAll();
 
     @Insert("insert into moments(m_id,u_id,m_time,m_text) values(#{m_id},#{u_id},#{m_time},#{m_text})")
     int insertMoments(@Param("m_id") Integer m_id, @Param("u_id") Integer u_id, @Param("m_time") Timestamp m_time, @Param("m_text") String m_text);
+
+    @Select("select * from moments where m_id = #{m_id}")
+    Moments selectMomentsById(@Param("m_id") Integer m_id);
 }

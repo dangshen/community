@@ -18,17 +18,14 @@ public class MomentsServiceImpl implements MomentsService {
 
     @Override
     public List<Moments> getAllMoments() {
-        return momentsMapper.selectAll();
+        List<Moments> list = momentsMapper.selectAll();
+        System.out.println("list on MomentsMapper: " + list);
+        return list;
     }
 
     @Override
     public int publishMoments(Moments moments){
-        try {
-            return momentsMapper.insertMoments(moments.getmId(), moments.getUser().getuId(), moments.getmTime(), moments.getmText());
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        return momentsMapper.insertMoments(moments.getmId(), moments.getUser().getuId(), moments.getmTime(), moments.getmText());
     }
 
     @Override
@@ -49,5 +46,10 @@ public class MomentsServiceImpl implements MomentsService {
     @Override
     public List<Moments> listMomentsByUserId(Integer uId) {
         return momentsMapper.selectMomentByUser(uId);
+    }
+
+    @Override
+    public Moments findMomentsById(Integer mId) {
+        return momentsMapper.selectByPrimaryKey(mId);
     }
 }
