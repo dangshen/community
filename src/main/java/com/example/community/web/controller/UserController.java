@@ -55,12 +55,16 @@ public class UserController {
     public Map<String, Object> login(@ModelAttribute("user") User user, HttpSession session) {
         Map<String, Object> returnMap = new HashMap<>();
         System.out.println("--------------------user: " + user);
-        User returnUser = userService.login(user);
-        if(returnUser != null) {
-            session.setAttribute("user", returnUser);
-            returnMap.put("result", "登录成功");
-            returnMap.put("user", returnUser);
-        } else {
+        try {
+            User returnUser = userService.login(user);
+            if (returnUser != null) {
+                session.setAttribute("user", returnUser);
+                returnMap.put("result", "登录成功");
+                returnMap.put("user", returnUser);
+            } else {
+                returnMap.put("result", "登录失败");
+            }
+        } catch (Exception e) {
             returnMap.put("result", "登录失败");
         }
         return returnMap;
