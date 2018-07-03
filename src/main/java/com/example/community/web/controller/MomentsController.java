@@ -1,4 +1,4 @@
-package com.example.community.web;
+package com.example.community.web.controller;
 
 import com.example.community.domain.Favorite;
 import com.example.community.domain.Moments;

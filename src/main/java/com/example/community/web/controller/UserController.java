@@ -1,4 +1,4 @@
-package com.example.community.web;
+package com.example.community.web.controller;
 
 import com.example.community.domain.User;
 import com.example.community.service.UserService;
@@ -54,6 +54,7 @@ public class UserController {
     @ResponseBody
     public Map<String, Object> login(@ModelAttribute("user") User user, HttpSession session) {
         Map<String, Object> returnMap = new HashMap<>();
+        System.out.println("--------------------user: " + user);
         User returnUser = userService.login(user);
         if(returnUser != null) {
             session.setAttribute("user", returnUser);
