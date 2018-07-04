@@ -11,11 +11,13 @@ public class InterceptorConfiguration extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
         //注册拦截器
-        InterceptorRegistration ir = registry.addInterceptor(new LoginInterceptor());
+        InterceptorRegistration loginInterceptor = registry.addInterceptor(new LoginInterceptor());
+        InterceptorRegistration tokenInterceptor = registry.addInterceptor(new TokenInterceptor());
         //配置不拦截路径
-        ir.excludePathPatterns("/user/loginPage");
-        ir.excludePathPatterns("/user/login");
+        loginInterceptor.excludePathPatterns("/user/loginPage");
+        loginInterceptor.excludePathPatterns("/user/login");
         //配置拦截路径
-        ir.addPathPatterns("/**");
+        loginInterceptor.addPathPatterns("/**");
+        tokenInterceptor.addPathPatterns("/**");
     }
 }

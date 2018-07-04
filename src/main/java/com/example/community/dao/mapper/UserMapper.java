@@ -11,4 +11,7 @@ import tk.mybatis.mapper.common.Mapper;
 public interface UserMapper extends Mapper<User> {
     @Select("select u_id,u_name from user where u_id = #{u_id}")
     User selectUserById(@Param("u_id") Integer u_id);
+
+    @Select("select * from user where u_id=#{u_id} and u_password=#{u_password}")
+    User selectByIdAndPwd(@Param("u_id") Integer u_id, @Param("u_password") String u_password);
 }

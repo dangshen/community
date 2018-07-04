@@ -1,11 +1,10 @@
 package com.example.community.web.controller;
 
-import com.example.community.domain.Favorite;
 import com.example.community.domain.Moments;
-import com.example.community.domain.User;
 import com.example.community.service.FavoriteService;
 import com.example.community.service.MomentsService;
 import com.example.community.service.UserService;
+import com.example.community.web.annotation.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +25,7 @@ public class MomentsController {
     //发布朋友圈
     @RequestMapping("/publishMoments")
     @ResponseBody
+    @Token(save = true)
     public Map<String, Object> publishMoments(@ModelAttribute Moments moments, @RequestParam Integer uId) {
         System.out.println("uid: " + uId);
         Map<String, Object> returnMap = new HashMap<>();

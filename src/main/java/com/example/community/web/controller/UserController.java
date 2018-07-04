@@ -2,6 +2,7 @@ package com.example.community.web.controller;
 
 import com.example.community.domain.User;
 import com.example.community.service.UserService;
+import com.example.community.web.annotation.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,12 +47,14 @@ public class UserController {
     }
 
     @RequestMapping("/loginPage")
+    @Token(save = true)
     public String showLogin() {
         return "/user/login";
     }
     //登录
     @RequestMapping("/login")
     @ResponseBody
+    @Token(remove = true)
     public Map<String, Object> login(@ModelAttribute("user") User user, HttpSession session) {
         Map<String, Object> returnMap = new HashMap<>();
         System.out.println("--------------------user: " + user);
@@ -77,7 +80,6 @@ public class UserController {
         Map<String, Object> returnMap = new HashMap<>();
         session.setAttribute("user", null);
         returnMap.put("result", "退出登录");
-        System.out.println("session user :　" + session.getAttribute("user"));
         return returnMap;
     }
 }
