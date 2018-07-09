@@ -6,10 +6,12 @@ import com.example.community.service.FavoriteService;
 import com.example.community.service.MomentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class MomentsServiceImpl implements MomentsService {
     @Autowired
     private MomentsMapper momentsMapper;
